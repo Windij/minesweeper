@@ -69,6 +69,14 @@ int Board::countNear(int x, int y) {
 }
 
 void Board::otkryt(int x, int y) {
+    if (x < 0 || x >= n || y < 0 || y >= m) {
+        return;
+    }
+
+    if (a[x][y] != '#') {
+        return;
+    }
+
     if (b[x][y] == '*') {
         a[x][y] = '*';
         return;
@@ -78,6 +86,12 @@ void Board::otkryt(int x, int y) {
 
     if (c == 0) {
         a[x][y] = '.';
+
+        for (int i = x - 1; i <= x + 1; i++) {
+            for (int j = y - 1; j <= y + 1; j++) {
+                otkryt(i, j);
+            }
+        }
     } else {
         a[x][y] = c + '0';
     }
