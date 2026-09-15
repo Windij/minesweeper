@@ -53,3 +53,32 @@ void Board::showAll() {
     }
     cout << endl;
 }
+
+int Board::countNear(int x, int y) {
+    int c = 0;
+
+    for (int i = x - 1; i <= x + 1; i++) {
+        for (int j = y - 1; j <= y + 1; j++) {
+            if (b[i][j] == '*') {
+                c++;
+            }
+        }
+    }
+
+    return c;
+}
+
+void Board::otkryt(int x, int y) {
+    if (b[x][y] == '*') {
+        a[x][y] = '*';
+        return;
+    }
+
+    int c = countNear(x, y);
+
+    if (c == 0) {
+        a[x][y] = '.';
+    } else {
+        a[x][y] = c + '0';
+    }
+}
