@@ -59,6 +59,10 @@ int Board::countNear(int x, int y) {
 
     for (int i = x - 1; i <= x + 1; i++) {
         for (int j = y - 1; j <= y + 1; j++) {
+            if (i < 0 || i >= n || j < 0 || j >= m) {
+                continue;
+            }
+
             if (b[i][j] == '*') {
                 c++;
             }
