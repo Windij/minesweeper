@@ -34,7 +34,15 @@ void Board::postavitMiny() {
 
 void Board::show() {
     cout << endl;
+    cout << "   ";
+    for (int j = 0; j < m; j++) {
+        cout << j << " ";
+    }
+    cout << endl;
+
     for (int i = 0; i < n; i++) {
+        cout << i << "  ";
+
         for (int j = 0; j < m; j++) {
             cout << a[i][j] << " ";
         }
@@ -45,7 +53,15 @@ void Board::show() {
 
 void Board::showAll() {
     cout << endl;
+    cout << "   ";
+    for (int j = 0; j < m; j++) {
+        cout << j << " ";
+    }
+    cout << endl;
+
     for (int i = 0; i < n; i++) {
+        cout << i << "  ";
+
         for (int j = 0; j < m; j++) {
             cout << b[i][j] << " ";
         }
@@ -98,5 +114,28 @@ void Board::otkryt(int x, int y) {
         }
     } else {
         a[x][y] = c + '0';
+    }
+}
+
+bool Board::isWin() {
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < m; j++) {
+            if (b[i][j] != '*' && a[i][j] == '#') {
+                return false;
+            }
+        }
+    }
+    return true;
+}
+
+bool Board::isMine(int x, int y) {
+    return b[x][y] == '*';
+}
+
+void Board::flag(int x, int y) {
+    if (a[x][y] == '#') {
+        a[x][y] = 'F';
+    } else if (a[x][y] == 'F') {
+        a[x][y] = '#';
     }
 }

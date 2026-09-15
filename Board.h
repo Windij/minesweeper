@@ -9,6 +9,9 @@ public:
     void showAll();
     void otkryt(int x, int y);
     int countNear(int x, int y);
+    bool isWin();
+    bool isMine(int x, int y);
+    void flag(int x, int y);
 
 private:
     char a[20][20];
