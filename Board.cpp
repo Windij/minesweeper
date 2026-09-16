@@ -34,17 +34,23 @@ void Board::postavitMiny() {
 
 void Board::show() {
     cout << endl;
-    cout << "   ";
+    cout << "  ";
     for (int j = 0; j < m; j++) {
+        if (j < 10) {
+            cout << " ";
+        }
         cout << j << " ";
     }
     cout << endl;
 
     for (int i = 0; i < n; i++) {
-        cout << i << "  ";
+        if (i < 10) {
+            cout << " ";
+        }
+        cout << i << " ";
 
         for (int j = 0; j < m; j++) {
-            cout << a[i][j] << " ";
+            cout << a[i][j] << "  ";
         }
         cout << endl;
     }
@@ -53,17 +59,23 @@ void Board::show() {
 
 void Board::showAll() {
     cout << endl;
-    cout << "   ";
+    cout << "  ";
     for (int j = 0; j < m; j++) {
+        if (j < 10) {
+            cout << " ";
+        }
         cout << j << " ";
     }
     cout << endl;
 
     for (int i = 0; i < n; i++) {
-        cout << i << "  ";
+        if (i < 10) {
+            cout << " ";
+        }
+        cout << i << " ";
 
         for (int j = 0; j < m; j++) {
-            cout << b[i][j] << " ";
+            cout << b[i][j] << "  ";
         }
         cout << endl;
     }
@@ -129,10 +141,17 @@ bool Board::isWin() {
 }
 
 bool Board::isMine(int x, int y) {
+    if (x < 0 || x >= n || y < 0 || y >= m) {
+        return false;
+    }
     return b[x][y] == '*';
 }
 
 void Board::flag(int x, int y) {
+    if (x < 0 || x >= n || y < 0 || y >= m) {
+        return;
+    }
+
     if (a[x][y] == '#') {
         a[x][y] = 'F';
     } else if (a[x][y] == 'F') {
